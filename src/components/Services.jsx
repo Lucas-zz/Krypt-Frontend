@@ -20,19 +20,19 @@ const Services = () => {
             color="bg-[#2952E3]"
             title="Secutiry Guaranteed"
             icon={<BsShieldFillCheck fontSize={21} className="text-white" />}
-            subtitle="Secutiry is guaranteed. We always mantain pryvacy and maintain the quality of our products."
+            subtitle="Secutiry is guaranteed. We always mantain privacy and maintain the quality of our products."
           />
           <ServiceCard
             color="bg-[#8945F8]"
             title="Best Exchange Rates"
             icon={<BiSearchAlt fontSize={21} className="text-white" />}
-            subtitle="Secutiry is guaranteed. We always mantain pryvacy and maintain the quality of our products."
+            subtitle="Due to our lower charge fee, we have the best exhange rates on the market!"
           />
           <ServiceCard
             color="bg-[#F84550]"
             title="Fastest Transactions"
             icon={<RiHeart2Fill fontSize={21} className="text-white" />}
-            subtitle="Secutiry is guaranteed. We always mantain pryvacy and maintain the quality of our products."
+            subtitle="Throught the Blockchain, our transactions are processed near-instantaneous without any intermediary."
           />
         </div>
       </div>

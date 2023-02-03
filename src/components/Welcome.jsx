@@ -5,16 +5,22 @@ import { BsInfoCircle } from 'react-icons/bs';
 import Loader from "./Loader";
 
 import { TransactionContext } from '../context/TransactionContext';
+import { shortenAddres } from '../utils/shortenAddress';
+import { toast, Toaster } from 'react-hot-toast';
+import Toast from './Toaster';
 
 const Welcome = () => {
-  const { connectWallet, currentAccount, formData, sendTransaction, handleChange } = useContext(TransactionContext);
+  const { connectWallet, currentAccount, formData, sendTransaction, handleChange, isLoading } = useContext(TransactionContext);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     const { addressTo, amount, keyword, message } = formData;
 
-    if (!addressTo || !amount || !keyword || !message) return;
+    if (!addressTo || !amount || !keyword || !message) {
+      toast.error("Fill out all the fields!");
+      return;
+    }
 
     sendTransaction();
   };
@@ -22,18 +28,18 @@ const Welcome = () => {
   return (
     <div className="flex w-full justify-center items-center">
       <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
-        <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">s
+        <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
           <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
             Send Crypto <br /> across the world
           </h1>
           <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
-            Explore the crypto world. Buy and sell cryptocurrencies easily on Krypto.
+            Explore the crypto world. Buy and send cryptocurrencies easily on Krypto.
           </p>
           {!currentAccount &&
             <button
               type="button"
               onClick={connectWallet}
-              className="flex flex-row justify-center w-full items-center my-5 bg-[#2952e3] p-3 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]"
+              className="flex flex-row justify-center w-full items-center my-5 mt-16 bg-[#2952e3] p-3 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]"
             >
               <p className="text-white text-base font-semibold">
                 Connect Wallet
@@ -68,7 +74,7 @@ const Welcome = () => {
               </div>
               <div>
                 <p className="text-white font-light text-sm">
-                  Address
+                  {shortenAddres(currentAccount)}
                 </p>
                 <p className="text-white font-semibold text-lg mt-1">
                   Ethereum
@@ -84,7 +90,7 @@ const Welcome = () => {
 
             <div className="h-[1px] w-full bg-gray-400 my-2 opacity-60" />
 
-            {false
+            {isLoading
               ? (
                 <Loader />
               ) : (
